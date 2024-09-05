@@ -67,20 +67,21 @@ INSTRUCTIONS STATUS: WIP 🚧
 
 1. Start off with the installation guide here:
 
-   https://comma.ai/setup/comma-3x
+   * https://comma.ai/setup/comma-3x
+   * (Also connect the OBD2 connector to make sure the Comma stays powered on while turning on the car)
 
-2. Then once you get your Comma powered up, you'll connect it to your Wi-Fi network.
+3. Then once you get your Comma powered up, you'll connect it to your Wi-Fi network.
 
-3. Install "Custom Software:
+4. Install "Custom Software:
     - When it asks you to enter a URL for "Custom Software", first try: `https://installer.comma.ai/pd0wm/rav4-prime`
     - If you installation hangs and then restarts, try: `https://smiskol.com/fork/pd0wm/rav4-prime`
 
-4. Get SSH setup on the device:
+5. Get SSH setup on the device:
    * Before you start (Both): https://github.com/commaai/openpilot/wiki/SSH#before-you-start
    * macOS: https://github.com/commaai/openpilot/wiki/SSH#option-2mac---pre-installed-openssh-client-on-macos
    * Windows: https://github.com/commaai/openpilot/wiki/SSH#option-2---pre-installed-openssh-client-on-windows-10-and-up
 
-5. Download Willem's secoc GitHub folder:
+6. Download Willem's secoc GitHub folder:
     - SSH back into your Comma device:
       ```sh
       ssh comma@"your Comma IP" enter comma for the login
@@ -90,19 +91,19 @@ INSTRUCTIONS STATUS: WIP 🚧
       git clone https://github.com/I-CAN-hack/secoc
       ```
 
-6. Kill openpilot:
+7. Kill openpilot:
     - Enter the following command:
       ```sh
       pkill -f openpilot
       ```
     - The Comma should display just the splash screen with the Comma logo.
 
-7. Put the car into "Ignition on" mode but with "Not Ready to Drive":
+8. Put the car into "Ignition on" mode but with "Not Ready to Drive":
     - Slow press the "Power" button twice WITHOUT pressing the brake pedal.
     - ![PXL_20240718_234619671 MP](https://github.com/user-attachments/assets/4970e82e-e7df-471f-9896-ba532509793d)
 
 
-8. Run the `extract_keys.py` script:
+9. Run the `extract_keys.py` script:
     - Navigate to the secoc directory:
       ```sh
       cd secoc
@@ -112,7 +113,7 @@ INSTRUCTIONS STATUS: WIP 🚧
       ./extract_keys.py
       ```
 
-9. Edit the script if you get an "Unexpected application version!" error:
+10. Edit the script if you get an "Unexpected application version!" error:
     - Open the script for editing:
       ```sh
       nano -l /data/openpilot/secoc/extract_keys.py
@@ -133,13 +134,13 @@ INSTRUCTIONS STATUS: WIP 🚧
       ./extract_keys.py
       ```
 
-10. Manually add the key to params (if needed):
+11. Manually add the key to params (if needed):
     - Use the following command to manually change the keys:
       ```sh
       echo -n "your key here" > /data/params/d/SecOCKey
       ```
 
-11. Fingerprinting (if the car is not recognized):
+12. Fingerprinting (if the car is not recognized):
     - Follow the guide on fingerprinting:
       https://github.com/commaai/openpilot/wiki/Fingerprinting
     - Locate the necessary ECU codes.
@@ -173,7 +174,7 @@ INSTRUCTIONS STATUS: WIP 🚧
         ],
       ```
 
-12. Disable updates
+13. Disable updates
 
     ```sh
     echo -en "1" > /data/params/d/DisableUpdates
@@ -209,7 +210,7 @@ The status of the vehicles are as follows:
         - Focus of Willem's Pull Request
           - Additional fingerprints added in anrum's frogpilot port.
       - `🇹 🇸 🇸 2️⃣` 2021 Sienna 🟢🟡
-        - 2021-2022: Known to be working
+        - 2021-2023: Known to be working
         - Key surprisingly at the same location as the RAV4 Prime
         - Community currently hacking it in as a RAV4 Prime. Should really be formally put it in as a Sienna. WIP.
           - tranlocquy's fork of anrum's Frogpilot port has this separated out and fingerprints added for 2021 at least.
